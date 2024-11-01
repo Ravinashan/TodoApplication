@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "71a4cdec-131c-4482-abb8-dd7faf905616",
+		"name": "Todo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23751510"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "2a388356-19d8-442b-9eeb-fb7cbaf04f2c",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ravinashan4@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/Todo/User/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"Todo",
+						"User",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "2a388356-19d8-442b-9eeb-fb7cbaf04f2c",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ravinashan4@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/Todo/User/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"Todo",
+						"User",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createTodo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXZpbmFzaGFuNEBnbWFpbC5jb20iLCJpYXQiOjE3MzA0MDEzNTYsImV4cCI6MTczMDQ4Nzc1Nn0.WbFZ5TiyggFd3JdvHZwIjyNGfJQZR6FxbX7bjHMcsXw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Buy groceries3\",\r\n    \"description\": \"Milk, Bread, Eggs, and Fruits\",\r\n    \"dueDate\": \"2024-11-30T10:00:00\",\r\n    \"priority\": \"HIGH\",\r\n    \"completed\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/Todo/todos/createtodo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"Todo",
+						"todos",
+						"createtodo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Todo List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXZpbmFzaGFuNEBnbWFpbC5jb20iLCJpYXQiOjE3MzA0MDEzNTYsImV4cCI6MTczMDQ4Nzc1Nn0.WbFZ5TiyggFd3JdvHZwIjyNGfJQZR6FxbX7bjHMcsXw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/Todo/todos/gettodo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"Todo",
+						"todos",
+						"gettodo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Todo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXZpbmFzaGFuNEBnbWFpbC5jb20iLCJpYXQiOjE3MzAzOTkyNjYsImV4cCI6MTczMDQ4NTY2Nn0.A_8xu4E6aC47nXfrdAvaF_gu1iBLEJxQmlSzSVPUcz8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Buy groceries1\",\r\n    \"description\": \"Milk, Bread, Eggs, and Fruits\",\r\n    \"dueDate\": \"2024-11-30T10:00:00\",\r\n    \"priority\": \"LOW\",\r\n    \"completed\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/Todo/todos/updatetodo/Buy groceries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"Todo",
+						"todos",
+						"updatetodo",
+						"Buy groceries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTodo",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXZpbmFzaGFuNEBnbWFpbC5jb20iLCJpYXQiOjE3MzA0MDEzNTYsImV4cCI6MTczMDQ4Nzc1Nn0.WbFZ5TiyggFd3JdvHZwIjyNGfJQZR6FxbX7bjHMcsXw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/Todo/todos/deletetodo/Buy groceries3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"Todo",
+						"todos",
+						"deletetodo",
+						"Buy groceries3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sort Todo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXZpbmFzaGFuNEBnbWFpbC5jb20iLCJpYXQiOjE3MzA0MzczNjIsImV4cCI6MTczMDUyMzc2Mn0.531p1uAKvn3VhWPxce_SbKJwUWgjxUg_jxNJ17VYhkU"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/Todo/todos/sort/todo?field=priority&order=asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"Todo",
+						"todos",
+						"sort",
+						"todo"
+					],
+					"query": [
+						{
+							"key": "field",
+							"value": "priority"
+						},
+						{
+							"key": "order",
+							"value": "asc"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X GET \"http://localhost:8080/Todo/todos/sort/todo?field=priority&order=desc\" \\\n     -H \"Authorization: Bearer <your_jwt_token>\"\n"
+			},
+			"response": []
+		},
+		{
+			"name": "search Todo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXZpbmFzaGFuNEBnbWFpbC5jb20iLCJpYXQiOjE3MzA0NTEwMTEsImV4cCI6MTczMDUzNzQxMX0.U59zFvwd46bDMd-hhDGfYzVOS4wTQysGb-pEQnSo1yM"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/Todo/todos/search?keyword=Milk&priority=LOW&completed=false",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"Todo",
+						"todos",
+						"search"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "Milk"
+						},
+						{
+							"key": "priority",
+							"value": "LOW"
+						},
+						{
+							"key": "completed",
+							"value": "false"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X GET \"http://localhost:8080/Todo/todos/search?keyword=groceries&priority=HIGH\" \\\n     -H \"Authorization: Bearer <your_jwt_token>\"\n"
+			},
+			"response": []
+		}
+	]
+}
