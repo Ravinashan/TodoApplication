@@ -47,7 +47,10 @@ public class TodoController {
     }
 
     @GetMapping(value = "gettodo")
-    public ResponseEntity<List<TodoResponse>> getTodo(@RequestHeader(value = "Authorization") String token) {
+    public ResponseEntity<List<TodoResponse>> getTodo(
+            @RequestHeader(value = "Authorization") String token,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size) {
 
         List<TodoResponse> todoResponses = todoService.getTodoList(token);
 
@@ -59,8 +62,13 @@ public class TodoController {
             return new ResponseEntity<>(todoResponses, HttpStatus.UNAUTHORIZED);
         }
 
-        return new ResponseEntity<>(todoResponses, HttpStatus.OK);
+        int start = Math.min(page * size, todoResponses.size());
+        int end = Math.min((page + 1) * size, todoResponses.size());
+        List<TodoResponse> paginatedTodos = todoResponses.subList(start, end);
+
+        return new ResponseEntity<>(paginatedTodos, HttpStatus.OK);
     }
+
 
     @PutMapping(value = "updatetodo/{title}")
     public ResponseEntity<TodoResponse> updateTodo(
@@ -105,6 +113,8 @@ public class TodoController {
     public ResponseEntity<List<TodoResponse>> sortTodos(
             @RequestParam String field,
             @RequestParam(defaultValue = "asc") String order,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
             @RequestHeader(value = "Authorization") String token) {
 
         List<TodoResponse> todoResponses = todoService.getSortedTodoList(token, field, order);
@@ -112,21 +122,28 @@ public class TodoController {
         if (todoResponses.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
         if ("Failure".equals(todoResponses.get(0).getStatus())) {
             return new ResponseEntity<>(todoResponses, HttpStatus.UNAUTHORIZED);
         }
 
-        return new ResponseEntity<>(todoResponses, HttpStatus.OK);
+        int start = Math.min(page * size, todoResponses.size());
+        int end = Math.min(start + size, todoResponses.size());
+
+        List<TodoResponse> paginatedResponse = todoResponses.subList(start, end);
+
+        return new ResponseEntity<>(paginatedResponse, HttpStatus.OK);
     }
+
 
 
     @GetMapping(value = "search")
     public ResponseEntity<List<TodoResponse>> searchTodos(
             @RequestParam(required = false) String keyword,
-            @RequestParam(required = false) Priority priority, // Change here
+            @RequestParam(required = false) Priority priority,
             @RequestParam(required = false) LocalDateTime dueDate,
             @RequestParam(required = false) Boolean completed,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
             @RequestHeader(value = "Authorization") String token) {
 
         List<TodoResponse> todoResponses = todoService.searchTodos(token, keyword, priority, dueDate, completed);
@@ -135,10 +152,16 @@ public class TodoController {
             return new ResponseEntity<>(todoResponses, HttpStatus.UNAUTHORIZED);
         }
 
-        return todoResponses.isEmpty() ?
+        int start = Math.min(page * size, todoResponses.size());
+        int end = Math.min(start + size, todoResponses.size());
+
+        List<TodoResponse> paginatedResponses = todoResponses.subList(start, end);
+
+        return paginatedResponses.isEmpty() ?
                 new ResponseEntity<>(HttpStatus.NOT_FOUND) :
-                new ResponseEntity<>(todoResponses, HttpStatus.OK);
+                new ResponseEntity<>(paginatedResponses, HttpStatus.OK);
     }
+
 
 
 
